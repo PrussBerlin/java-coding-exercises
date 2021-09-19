@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Text?>
+<BorderPane fx:controller="controller.Controller"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:id="mainWindow">
+    <top>
+        <HBox spacing="5" alignment="BASELINE_LEFT">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+            <Separator orientation="VERTICAL"/>
+            <Label text="Choose a Shape:"/>
+            <ChoiceBox fx:id="chosenShape">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Line"/>
+                        <String fx:value="Rectangle"/>
+<!--                        <String fx:value="Square"/>-->
+                        <String fx:value="Circle"/>
+                        <String fx:value="Ellipse"/>
+                        <String fx:value="Triangle"/>
+<!--                        <String fx:value="Polygon"/>-->
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="Rectangle"/>
+                </value>
+            </ChoiceBox>
+            <Separator orientation="VERTICAL"/>
+            <Label text="Line:"/>
+            <ColorPicker fx:id="lineColorBox">
+                <value>
+                    <Color blue="0" red="0" green="0"/>
+                </value>
+            </ColorPicker>
+            <Label text="Fill:"/>
+            <ColorPicker fx:id="fillColorBox">
+                <value>
+                    <Color blue="0" red="0" green="1.0"/>
+                </value>
+            </ColorPicker>
+        </HBox>
+    </top>
+
+    <center>
+        <Pane fx:id="surface"
+              onMouseReleased="#handleMouseReleased" onMouseDragged="#handleMouseDrag"
+              onMousePressed="#handleMouseDown"
+              style="-fx-background-color: white"/>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="5"/>
+            </padding>
+            <Label text="Edit shape:"/>
+            <Label fx:id="showShapeName" text="..."/>
+            <Label text="ID:"/>
+            <TextField fx:id="idTextField" prefWidth="40" onAction="#handleOkButton"/>
+            <Label fx:id="heightLabel" text="Height:"/>
+            <TextField fx:id="heightTextField" prefWidth="70" onAction="#handleOkButton"/>
+            <Label fx:id="widthLabel" text="Width:" visible="true"/>
+            <TextField fx:id="widthTextField" prefWidth="70" onAction="#handleOkButton"/>
+            <Label text="Circumference:"/>
+            <Label fx:id="showCircumference" text="..."/>
+            <Label text="Area:"/>
+            <Label fx:id="showArea" text="..."/>
+            <Button text="Accept" onAction="#handleOkButton" prefWidth="100" disable="${heightTextField.text.empty}"/>
+            <Button text="Clear" onAction="#handleClear" prefWidth="100"/>
+            <Label text="X:"/>
+            <TextField fx:id="xCoordField" text="0" prefWidth="40" onAction="#handleOkButton"/>
+            <Label text="Y:"/>
+            <TextField fx:id="yCoordField" text="0" prefWidth="40" onAction="#handleOkButton"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
